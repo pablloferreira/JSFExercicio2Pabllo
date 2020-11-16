@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+<title>Lista de Bens</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro" action="cadatroControle.xhtml" immediate="true" />
+		<h1>Lista de Bens</h1>
+		<h:messages />
+		<h:dataTable border="1" value="#{ControleControllerPabllo.lista}" var="cont">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{cont.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{cont.descrisao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Especificação do Bem" />
+				</f:facet>
+				<h:outputText value="#{cont.especificacao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Departamento Alocado" />
+				</f:facet>
+				<h:outputText value="#{cont.departamento}">
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor do Bem" />
+				</f:facet>
+				<h:outputText value="#{cont.valor}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data Cadastro" />
+				</f:facet>
+				<h:outputText value="#{cont.data_cadastro}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Editar" action="#{ControleControllerPabllo.editar}">
+					<f:setPropertyActionListener 
+						value="#{cont}" 
+						target="#{ControleControllerPabllo.cont}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir" action="#{ControleControllerPabllo.excluir}" onclick="return confirm('Confirma a exclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{cont}" 
+						target="#{ControleControllerPabllo.cont}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
